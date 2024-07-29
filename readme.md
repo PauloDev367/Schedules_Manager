@@ -2,7 +2,7 @@
 
 
 ## System Diagram
-<img src="https://github.com/PauloDev367/Schedules_Manager/assets/system-diagram.png" style="width: 100%;">
+<img src="https://github.com/PauloDev367/Schedules_Manager/blob/master/assets/system-diagram.png" style="width: 100%;">
 
 
 ## Conventional Commits
