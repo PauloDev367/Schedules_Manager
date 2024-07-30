@@ -11,23 +11,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C7A8B6E1-8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F70F500B-C55D-425F-908D-470C4D1D1E00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataEF", "SchedulingService\Adapters\DataEF\DataEF.csproj", "{D27B230E-3152-41E8-BD06-0FBA8DED96C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataEF", "SchedulingService\Adapters\DataEF\DataEF.csproj", "{D27B230E-3152-41E8-BD06-0FBA8DED96C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAuth", "SchedulingService\Adapters\IdentityAuth\IdentityAuth.csproj", "{C6F8E731-2A7A-4C27-87E6-53EC1321542A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityAuth", "SchedulingService\Adapters\IdentityAuth\IdentityAuth.csproj", "{C6F8E731-2A7A-4C27-87E6-53EC1321542A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogWriter", "SchedulingService\Adapters\LogWriter\LogWriter.csproj", "{4193609F-0083-496F-A23D-09D8B0C9D9E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogWriter", "SchedulingService\Adapters\LogWriter\LogWriter.csproj", "{4193609F-0083-496F-A23D-09D8B0C9D9E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{7581A8C5-1106-4AF8-84C6-269BBFB26482}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "SchedulingService\Consumers\API\API.csproj", "{11995D6B-A567-4052-A8EA-AC1D395580E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "SchedulingService\Consumers\API\API.csproj", "{11995D6B-A567-4052-A8EA-AC1D395580E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "SchedulingService\Core\Application\Application.csproj", "{7DE7E3DD-197D-4BCD-A834-F1EF51682BC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "SchedulingService\Core\Application\Application.csproj", "{7DE7E3DD-197D-4BCD-A834-F1EF51682BC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "SchedulingService\Core\Domain\Domain.csproj", "{886134D5-1CCB-4502-88DC-2859100BA2B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "SchedulingService\Core\Domain\Domain.csproj", "{886134D5-1CCB-4502-88DC-2859100BA2B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationTests", "SchedulingService\Tests\ApplicationTests\ApplicationTests.csproj", "{4F1DC971-DBC4-485D-A923-A81DB9F04E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationTests", "SchedulingService\Tests\ApplicationTests\ApplicationTests.csproj", "{4F1DC971-DBC4-485D-A923-A81DB9F04E81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainTests", "SchedulingService\Tests\DomainTests\DomainTests.csproj", "{87E60CDE-61BC-485A-BD8E-01AF2069DCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainTests", "SchedulingService\Tests\DomainTests\DomainTests.csproj", "{87E60CDE-61BC-485A-BD8E-01AF2069DCA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "SchedulingService\Adapters\Services\Services.csproj", "{412E2E21-D42B-406B-925D-3C4BF31AB1CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{87E60CDE-61BC-485A-BD8E-01AF2069DCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87E60CDE-61BC-485A-BD8E-01AF2069DCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87E60CDE-61BC-485A-BD8E-01AF2069DCA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{412E2E21-D42B-406B-925D-3C4BF31AB1CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{412E2E21-D42B-406B-925D-3C4BF31AB1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{412E2E21-D42B-406B-925D-3C4BF31AB1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{412E2E21-D42B-406B-925D-3C4BF31AB1CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{886134D5-1CCB-4502-88DC-2859100BA2B5} = {C7A8B6E1-897C-498F-90BD-0F337D888341}
 		{4F1DC971-DBC4-485D-A923-A81DB9F04E81} = {F70F500B-C55D-425F-908D-470C4D1D1E00}
 		{87E60CDE-61BC-485A-BD8E-01AF2069DCA4} = {F70F500B-C55D-425F-908D-470C4D1D1E00}
+		{412E2E21-D42B-406B-925D-3C4BF31AB1CD} = {7581A8C5-1106-4AF8-84C6-269BBFB26482}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {615061B5-63EC-4C11-89F9-E2FA532B5D45}
