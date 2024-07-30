@@ -1,5 +1,6 @@
 ﻿using Domain.Enums;
 using Domain.Exceptions;
+using System;
 
 namespace Domain.Entities;
 public class Professional : User
@@ -29,5 +30,24 @@ public class Professional : User
         }
         DaysOfWork.Add(dayOfWork);
     }
+    public void AddNewSchedule(Schedule schedule)
+    {
+        if (schedule.Date < DateTime.Now)
+            throw new InvalidScheduleDayOfWorkException("The schedule date should be greater than now");
 
+        var day = DaysOfWork
+            .FirstOrDefault(d => d.DayOfWeek == schedule.DayOfWeek && d.ProfessionalId == schedule.ProfessionalId);
+
+        if (day != null)
+        {
+            if (!(schedule.Time >= day.TimeInit && schedule.Time <= day.TimeEnd))
+                throw new InvalidScheduleDayOfWorkException("This professional doesn't work this day");
+        }
+        else
+        {
+            throw new InvalidScheduleDayOfWorkException("No working hours defined for this professional on this day");
+        }
+
+        Schedules.Add(schedule);
+    }
 }
