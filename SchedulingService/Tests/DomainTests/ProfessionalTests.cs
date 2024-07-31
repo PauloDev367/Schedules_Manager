@@ -83,7 +83,7 @@ public class ProfessionalTests
     [TestCase("2024-09-30 16:00:00", 2)]
     [TestCase("2024-10-30 20:00:00", 3)]
  
-    public void ShouldNotAddNewScheduleIfProfessionalDoesntWorkInTheDay(
+    public void ShouldNotAddNewScheduleIfProfessionalDoesntWorkInTheDayAndTime(
         string scheduleDate, int scheduleDayOfWeek
         )
     {
@@ -113,11 +113,61 @@ public class ProfessionalTests
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 
-
+        var scheduleDateParse = DateTime.Parse(scheduleDate);
+        var today = DateTime.Now;
+        var scheduleDateTest = DateTime.Parse($"{today.Year}-{today.Month}-{today.Day} {scheduleDateParse.Hour}:{scheduleDateParse.Minute}:{scheduleDateParse.Second}");
+        Console.WriteLine(scheduleDateTest.ToString());
         var schedule = new Schedule
         {
-            Date = DateTime.Parse(scheduleDate),
+            Date = scheduleDateTest,
             DayOfWeek = (DayOfWeek)scheduleDayOfWeek,
+            IsImportant = true,
+            Title = "Test",
+        };
+        schedule.AddProfessional(professional);
+
+        var error = Assert.Throws<InvalidScheduleDayOfWorkException>(() =>
+        {
+            professional.AddNewSchedule(schedule);
+        });
+    }
+    [Test]
+    public void ShouldAddNewScheduleIfProfessionalWorkInTheScheduleDate()
+    {
+
+        var professionalId = Guid.NewGuid();
+        var day1 = new DayOfWork
+        {
+            ProfessionalId = professionalId,
+            DayOfWeek = DayOfWeek.Sunday,
+            TimeInit = TimeSpan.Parse("09:00:00"),
+            TimeEnd = TimeSpan.Parse("14:00:00"),
+        };
+        var day2 = new DayOfWork
+        {
+            ProfessionalId = professionalId,
+            DayOfWeek = DayOfWeek.Sunday,
+            TimeInit = TimeSpan.Parse("09:00:00"),
+            TimeEnd = TimeSpan.Parse("15:00:00"),
+        };
+
+        var professional = new Professional
+        {
+            Id = Guid.NewGuid(),
+            Name = "Test",
+            Email = "test@email",
+            PasswordHash = "hash",
+        };
+        professional.AddNewDayOfWork(day1);
+        professional.AddNewDayOfWork(day2);
+        var today = DateTime.Now;
+
+        var scheduleDate = DateTime.Parse($"{today.Year}-{today.Month}-{today.Day} 10:00:00");
+        scheduleDate.AddDays(1);
+        var schedule = new Schedule
+        {
+            Date = scheduleDate,
+            DayOfWeek = DayOfWeek.Sunday,
             IsImportant = true,
             Title = "Test",
         };
@@ -128,4 +178,5 @@ public class ProfessionalTests
             professional.AddNewSchedule(schedule);
         });
     }
+
 }
