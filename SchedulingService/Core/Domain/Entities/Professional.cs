@@ -36,8 +36,9 @@ public class Professional : User
             throw new InvalidScheduleDayOfWorkException("The schedule date should be greater than now");
 
         var day = DaysOfWork
-            .FirstOrDefault(d => d.DayOfWeek == schedule.DayOfWeek && d.ProfessionalId == schedule.ProfessionalId);
-
+            .FirstOrDefault(d => d.DayOfWeek == schedule.DayOfWeek 
+                                 && d.ProfessionalId == schedule.ProfessionalId);
+        
         if (day != null)
         {
             if (!(schedule.Time >= day.TimeInit && schedule.Time <= day.TimeEnd))

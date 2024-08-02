@@ -10,13 +10,14 @@ public class ProfessionalTests
     public void Setup()
     {
     }
+
     [TestCase("09:00:00", "12:00:00", 0)]
     [TestCase("09:00:00", "14:00:00", 1)]
     [TestCase("07:00:00", "12:00:00", 2)]
     [TestCase("09:00:00", "12:00:00", 3)]
     public void ShouldAddTheDayOfWorkToUserIfTheDayAndTimesAreDiferents(
-    string timeInit, string timeEnd, int dayOfWeek
-        )
+        string timeInit, string timeEnd, int dayOfWeek
+    )
     {
         var professionalId = Guid.NewGuid();
         var day1 = new DayOfWork
@@ -45,6 +46,7 @@ public class ProfessionalTests
         professional.AddNewDayOfWork(day2);
         Assert.AreEqual(2, professional.DaysOfWork.Count);
     }
+
     [Test]
     public void ShouldNotAddTheSameDayOfWorkToUser()
     {
@@ -72,20 +74,16 @@ public class ProfessionalTests
             PasswordHash = "hash",
         };
         professional.AddNewDayOfWork(day1);
-        Assert.Throws<DayOfWorkAlreadyAddToUserException>(() =>
-        {
-            professional.AddNewDayOfWork(day2);
-        });
+        Assert.Throws<DayOfWorkAlreadyAddToUserException>(() => { professional.AddNewDayOfWork(day2); });
     }
-    
+
     [TestCase("2024-07-30 08:00:00", 0)]
     [TestCase("2024-08-30 17:00:00", 1)]
     [TestCase("2024-09-30 16:00:00", 2)]
     [TestCase("2024-10-30 20:00:00", 3)]
- 
     public void ShouldNotAddNewScheduleIfProfessionalDoesntWorkInTheDayAndTime(
         string scheduleDate, int scheduleDayOfWeek
-        )
+    )
     {
         var professionalId = Guid.NewGuid();
         var day1 = new DayOfWork
@@ -115,7 +113,9 @@ public class ProfessionalTests
 
         var scheduleDateParse = DateTime.Parse(scheduleDate);
         var today = DateTime.Now;
-        var scheduleDateTest = DateTime.Parse($"{today.Year}-{today.Month}-{today.Day} {scheduleDateParse.Hour}:{scheduleDateParse.Minute}:{scheduleDateParse.Second}");
+        var scheduleDateTest =
+            DateTime.Parse(
+                $"{today.Year}-{today.Month}-{today.Day} {scheduleDateParse.Hour}:{scheduleDateParse.Minute}:{scheduleDateParse.Second}");
         Console.WriteLine(scheduleDateTest.ToString());
         var schedule = new Schedule
         {
@@ -126,15 +126,12 @@ public class ProfessionalTests
         };
         schedule.AddProfessional(professional);
 
-        var error = Assert.Throws<InvalidScheduleDayOfWorkException>(() =>
-        {
-            professional.AddNewSchedule(schedule);
-        });
+        var error = Assert.Throws<InvalidScheduleDayOfWorkException>(() => { professional.AddNewSchedule(schedule); });
     }
-    [Test]
-    public void ShouldAddNewScheduleIfProfessionalWorkInTheScheduleDate()
-    {
 
+    [Test]
+    public void ShouldNotAddNewScheduleIfProfessionalNotWorkInTheScheduleDate()
+    {
         var professionalId = Guid.NewGuid();
         var day1 = new DayOfWork
         {
@@ -173,10 +170,6 @@ public class ProfessionalTests
         };
         schedule.AddProfessional(professional);
 
-        Assert.Throws<InvalidScheduleDayOfWorkException>(() =>
-        {
-            professional.AddNewSchedule(schedule);
-        });
+        Assert.Throws<InvalidScheduleDayOfWorkException>(() => { professional.AddNewSchedule(schedule); });
     }
-
 }
