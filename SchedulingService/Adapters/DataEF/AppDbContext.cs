@@ -6,9 +6,9 @@ namespace DataEF;
 
 public class AppDbContext : DbContext
 {
-    public User Users { get; set; }
-    public Schedule Schedules { get; set; }
-    public DayOfWork DayOfWorks { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Schedule> Schedules { get; set; }
+    public DbSet<DayOfWork> DayOfWorks { get; set; }
     
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
