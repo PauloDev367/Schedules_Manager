@@ -7,8 +7,13 @@ public class Schedule
     public TimeSpan Time { get; set; }
     public DateTime Date { get; set; }
     public bool IsImportant { get; set; }
+    public Professional Professional { get; set; }
     public Guid ProfessionalId { get; private set; }
     public string Comment { get; set; }
+
     public void AddProfessional(Professional professional)
-    { ProfessionalId = professional.Id; }
+    {
+        ProfessionalId = professional.Id;
+        this.Professional = professional;
+    }
 }
