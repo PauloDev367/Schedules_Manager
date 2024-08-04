@@ -29,8 +29,8 @@ public class AdminTests
             Id = professionalId,
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 
@@ -79,8 +79,8 @@ public class AdminTests
             Id = professionalId,
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 
@@ -131,8 +131,8 @@ public class AdminTests
             Id = professionalId,
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 

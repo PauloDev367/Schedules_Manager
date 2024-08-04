@@ -40,8 +40,8 @@ public class ProfessionalTests
             Id = Guid.NewGuid(),
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
         Assert.AreEqual(2, professional.DaysOfWork.Count);
@@ -71,8 +71,8 @@ public class ProfessionalTests
             Id = Guid.NewGuid(),
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         Assert.Throws<DayOfWorkAlreadyAddToUserException>(() => { professional.AddNewDayOfWork(day2); });
     }
@@ -106,8 +106,8 @@ public class ProfessionalTests
             Id = Guid.NewGuid(),
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 
@@ -153,8 +153,8 @@ public class ProfessionalTests
             Id = Guid.NewGuid(),
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+        professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
         var today = DateTime.Now;
@@ -197,8 +197,8 @@ public class ProfessionalTests
             Id = professionalId,
             Name = "Test",
             Email = "test@email",
-            PasswordHash = "hash",
         };
+                professional.SetPassword("senha");
         professional.AddNewDayOfWork(day1);
         professional.AddNewDayOfWork(day2);
 
