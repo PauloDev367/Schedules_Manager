@@ -7,8 +7,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.ConfigureDbContext();
-builder.ConfigureIdentityAuth();
 builder.ConfigureDependencies();
+builder.ConfigureIdentityAuth();
 
 var app = builder.Build();
 

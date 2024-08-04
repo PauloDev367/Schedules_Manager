@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Adapters\DataEF\DataEF.csproj" />
     <ProjectReference Include="..\..\Adapters\IdentityAuth\IdentityAuth.csproj" />
+    <ProjectReference Include="..\..\Adapters\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

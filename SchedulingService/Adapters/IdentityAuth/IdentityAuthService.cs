@@ -13,6 +13,14 @@ public class IdentityAuthService : IAuthUserService
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly JwtGenerator _jwtGenerator;
+
+    public IdentityAuthService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, JwtGenerator jwtGenerator)
+    {
+        _signInManager = signInManager;
+        _userManager = userManager;
+        _jwtGenerator = jwtGenerator;
+    }
+
     public async Task<LoggedUserResponse> AuthenticateAsync(LoginUserRequest request)
     {
         var result = await _signInManager.PasswordSignInAsync(request.Email, request.Password, false, true);
@@ -99,6 +107,6 @@ public class IdentityAuthService : IAuthUserService
     {
         var user = await _userManager.FindByIdAsync(id.ToString());
         if (user == null) return null;
-        return new UserDto{Email = user.Email, Name = user.UserName, Id = id};
+        return new UserDto { Email = user.Email, Name = user.UserName, Id = id };
     }
 }

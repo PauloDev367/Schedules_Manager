@@ -5,7 +5,7 @@ namespace Application.User.Ports;
 
 public interface IUserService
 {
-    public Task<UserDto> CreateUserAsync(CreateUserRequest request);
+    public Task<CreatedUserResponse> CreateUserAsync(CreateUserRequest request);
     public Task<List<UserDto>> GetAllAsync(GetUsersRequest request);
     public Task<UserDto?> GetOneAsync(Guid id);
     public Task DeleteAsync(Guid id);

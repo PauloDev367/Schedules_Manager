@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Application.User.Attributes;
 using Domain.Enums;
 
@@ -19,6 +20,7 @@ public class CreateUserRequest
     [Required]
     [EmailAddress]
     public string Email { get; set; }
+    [JsonIgnore]
     public Roles Roles { get; private set; }
 
     public void SetRole(Roles role) => Roles = role;
