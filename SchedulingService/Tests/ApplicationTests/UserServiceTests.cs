@@ -43,8 +43,10 @@ public class UserServiceTests
         var created = await userService.CreateUserAsync(request);
         var errorsQuantityExpected = 0;
         Assert.AreEqual(created.User.Id, createdUserId);
+        Assert.AreEqual(created.User.Role, Roles.Professional.ToString());
         Assert.AreEqual(created.Errors.Count, errorsQuantityExpected);
     }
+
     [Test]
     public async Task ShouldCreateNewAdminUser()
     {
@@ -61,11 +63,13 @@ public class UserServiceTests
         _authUserService.Setup(au => au.RegisterAsync(It.IsAny<RegisterUserRequest>()))
             .ReturnsAsync(new RegisteredUserResponse());
         _userRepository.Setup(us => us.CreateAsync(It.IsAny<User>()))
-            .ReturnsAsync(new Professional { Id = createdUserId, Name = "Nome", Email = "email@email.com" });
+            .ReturnsAsync(new Admin { Id = createdUserId, Name = "Nome", Email = "email@email.com"});
+        
         var userService = new UserService(_userRepository.Object, _authUserService.Object);
         var created = await userService.CreateUserAsync(request);
         var errorsQuantityExpected = 0;
         
+        Assert.AreEqual(Roles.Admin.ToString(), created.User.Role);
         Assert.AreEqual(created.User.Id, createdUserId);
         Assert.AreEqual(created.Errors.Count, errorsQuantityExpected);
     }

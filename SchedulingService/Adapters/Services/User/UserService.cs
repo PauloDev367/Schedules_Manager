@@ -33,14 +33,12 @@ public class UserService : IUserService
             return response;
         }
 
-
         Domain.Entities.User user;
-        if (request.Roles.Equals(Roles.Professional))
+        if (request.Roles.ToString() == Roles.Professional.ToString())
         {
             user = new Domain.Entities.Professional
             {
                 Name = request.Name,
-                Role = request.Roles,
                 Email = request.Email,
             };
         }
@@ -49,7 +47,6 @@ public class UserService : IUserService
             user = new Domain.Entities.Admin
             {
                 Name = request.Name,
-                Role = request.Roles,
                 Email = request.Email,
             };
         }

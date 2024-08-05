@@ -5,7 +5,10 @@ using System;
 namespace Domain.Entities;
 public class Professional : User
 {
-    public Roles Role { get; set; } = Roles.Professional;
+    public Professional()
+    {
+        Role = Roles.Professional;
+    }
     public List<DayOfWork> DaysOfWork { get; set; } = new List<DayOfWork>();
     public List<Schedule> Schedules { get; set; } = new List<Schedule>();
 

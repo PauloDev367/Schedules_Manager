@@ -23,5 +23,5 @@ public class CreateUserRequest
     [JsonIgnore]
     public Roles Roles { get; private set; }
 
-    public void SetRole(Roles role) => Roles = role;
+    public void SetRole(Roles role) => this.Roles = role;
 }
