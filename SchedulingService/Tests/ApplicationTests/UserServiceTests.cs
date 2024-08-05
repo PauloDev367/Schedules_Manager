@@ -41,7 +41,32 @@ public class UserServiceTests
             .ReturnsAsync(new Professional { Id = createdUserId, Name = "Nome", Email = "email@email.com" });
         var userService = new UserService(_userRepository.Object, _authUserService.Object);
         var created = await userService.CreateUserAsync(request);
-
+        var errorsQuantityExpected = 0;
         Assert.AreEqual(created.User.Id, createdUserId);
+        Assert.AreEqual(created.Errors.Count, errorsQuantityExpected);
+    }
+    [Test]
+    public async Task ShouldCreateNewAdminUser()
+    {
+        var createdUserId = Guid.NewGuid();
+        var request = new CreateUserRequest
+        {
+            Email = "email@email.com",
+            Name = "Nome",
+            Password = "Senha@123123",
+            ConfirmPassword = "Senha@123123"
+        };
+        request.SetRole(Roles.Admin);
+
+        _authUserService.Setup(au => au.RegisterAsync(It.IsAny<RegisterUserRequest>()))
+            .ReturnsAsync(new RegisteredUserResponse());
+        _userRepository.Setup(us => us.CreateAsync(It.IsAny<User>()))
+            .ReturnsAsync(new Professional { Id = createdUserId, Name = "Nome", Email = "email@email.com" });
+        var userService = new UserService(_userRepository.Object, _authUserService.Object);
+        var created = await userService.CreateUserAsync(request);
+        var errorsQuantityExpected = 0;
+        
+        Assert.AreEqual(created.User.Id, createdUserId);
+        Assert.AreEqual(created.Errors.Count, errorsQuantityExpected);
     }
 }
