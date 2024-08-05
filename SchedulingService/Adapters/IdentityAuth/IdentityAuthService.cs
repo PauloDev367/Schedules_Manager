@@ -57,7 +57,6 @@ public class IdentityAuthService : IAuthUserService
             response.UserEmail = register.Email;
 
             var roleResult = await _userManager.AddToRoleAsync(identityUser, register.Role.ToString());
-
         }
         else
             response.SetError(result.Errors.ToList().Select(r => r.Description).ToList());

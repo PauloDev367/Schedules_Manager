@@ -61,9 +61,17 @@ public class UserService : IUserService
             Role = request.Roles,
         };
 
-        await _authUserService.RegisterAsync(register);
-        var created = await _userRepository.CreateAsync(user);
-        response.User = new UserDto(created);
+        var authRegister = await _authUserService.RegisterAsync(register);
+        if (authRegister.Errors.Count < 0)
+        {
+            var created = await _userRepository.CreateAsync(user);
+            response.User = new UserDto(created);                
+        }
+        else
+        {
+            response.AddErrors(authRegister.Errors);
+        }
+
         return response;
     }
 
